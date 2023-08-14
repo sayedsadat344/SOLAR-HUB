@@ -9,12 +9,12 @@ class Counter extends Component
 
 
     public $count = 1;
- 
+
     public function increment()
     {
         $this->count++;
     }
- 
+
     public function decrement()
     {
         $this->count--;
@@ -22,6 +22,6 @@ class Counter extends Component
 
     public function render()
     {
-        return view('livewire.counter')->layout('layouts.app');
+        return view('livewire.counter');
     }
 }
