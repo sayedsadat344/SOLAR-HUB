@@ -31,7 +31,7 @@
             <div class="x_content">
                 <form id="demo-form">
 
-
+                    @csrf
                     <div class="row">
 
                         <div class="col-12">

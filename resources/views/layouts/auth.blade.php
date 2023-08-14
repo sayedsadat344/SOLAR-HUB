@@ -75,8 +75,8 @@
                                 <li><a><i class="fa fa-edit"></i> Product Management <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/products" wire:navigate.hover>Product List</a></li>
-                                        <li><a href="/categories" wire:navigate>Product Categories</a></li>
-                                        <li><a href="/saleitems" wire:navigate>Sale Items</a></li>
+                                        <li><a href="/product/category" wire:navigate>Product Categories</a></li>
+                                        <li><a href="/sale/items" wire:navigate>Sale Items</a></li>
                                         <li><a href="/suppliers" wire:navigate>Product Suppliers</a></li>
 
                                     </ul>
@@ -323,6 +323,9 @@
         </div>
     </div>
 
+
+
+
     <!-- jQuery -->
     <script src="{{ asset('auth/assets/vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
@@ -363,6 +366,30 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('auth/assets/build/js/custom.min.js') }}"></script>
+
+
+    <script type="text/javascript">
+        window.addEventListener('closeModal', (event) => {
+
+
+            //find modal
+            const modal = document.getElementById(event.detail);
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.setAttribute('style', 'display: none');
+            // get modal backdrops
+            const modalsBackdrops = document.getElementsByClassName('modal-backdrop');
+            console.log("EVENT: ",modalsBackdrops);
+            document.body.removeChild(modalsBackdrops[0]);
+
+            // remove every modal backdrop
+            // for (let i = 0; i < modalsBackdrops.length; i++) {
+            //     document.body.removeChild(modalsBackdrops[i]);
+            // }
+
+        })
+    </script>
+
 
 </body>
 

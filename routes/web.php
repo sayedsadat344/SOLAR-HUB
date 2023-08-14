@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Auth\Dashboard\Category;
 use App\Livewire\Auth\Dashboard\Dashboard;
 use App\Livewire\Auth\Dashboard\Product;
 use App\Livewire\Auth\Dashboard\Products\AddProduct;
@@ -34,6 +35,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/products', Product::class)->name('products');
     Route::get('/products/add', AddProduct::class)->name('add-product');
+    Route::get('/product/category', Category::class)->name('product-category');
+    Route::get('/sale/items', AddProduct::class)->name('sale-items');
 });
 
 

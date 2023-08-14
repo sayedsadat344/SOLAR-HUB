@@ -41,10 +41,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
-                            <p class="text-muted font-13 m-b-30">
-                                DataTables has most features enabled by default, so all you need to do to use it with
-                                your own tables is to call the construction function: <code>$().DataTable();</code>
-                            </p>
+
 
 
                             @dump($products)
@@ -91,7 +88,7 @@
                                     <div class="alert alert-info alert-dismissible " role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                                         </button>
-                                        <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+                                        <strong>NO PRODUCTS!</strong>
                                       </div>
                                 </div>
                             @endif
