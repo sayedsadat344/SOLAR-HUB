@@ -16,7 +16,7 @@ return new class extends Migration
         $table->text('description')->nullable();
         $table->decimal('price', 10, 2);
         $table->integer('stock_quantity')->default(0);
-        $table->integer('image');
+        $table->string('image');
         // Add more columns as needed, e.g., category_id, supplier_id, etc.
         $table->foreignId('category_id')->nullable()->constrained('categories');
         $table->foreignId('supplier_id')->nullable()->constrained('suppliers');

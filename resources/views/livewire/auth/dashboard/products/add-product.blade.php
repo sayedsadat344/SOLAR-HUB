@@ -58,12 +58,13 @@
                                     <label for="supplier">Supplier <span class="text-danger">*</span>:</label>
                                     <select id="supplier" class="form-control" wire:model="productForm.supplier_id">
                                         <option value="">Select...</option>
-                                        <option value="1">Press</option>
-                                        <option value="2">Internet</option>
-                                        <option value="3">Word of mouth</option>
+                                        @foreach ($suppliers as $sup )
+                                        <option value="{{$sup->id}}">{{$sup->name}}</option>
+
+                                        @endforeach
                                     </select>
 
-                                    @error('productForm.supplier')
+                                    @error('productForm.supplier_id')
                                         <span class="error text-danger">{{ $message }}</span>
                                     @enderror
 
@@ -73,9 +74,13 @@
                                     <label for="category_id">Category <span class="text-danger">*</span>:</label>
                                     <select id="category_id" class="form-control" wire:model="productForm.category_id">
                                         <option value="">Select...</option>
-                                        <option value="1">Press</option>
-                                        <option value="2">Internet</option>
-                                        <option value="3">Word of mouth</option>
+
+                                        @foreach ($categories as $cat)
+                                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+
+                                        @endforeach
+
+
                                     </select>
 
                                     @error('productForm.category_id')
@@ -107,28 +112,10 @@
 
                                 <div class="col-12">
 
-
-
-
-
-
-                                    <label>Hobbies (2 minimum):</label>
-                                    <p style="padding: 5px;">
-
-                                    <p>
-
-                                        <label for="heard">Heard us by *:</label>
-                                        <select id="heard" class="form-control" required>
-                                            <option value="">Choose..</option>
-                                            <option value="press">Press</option>
-                                            <option value="net">Internet</option>
-                                            <option value="mouth">Word of mouth</option>
-                                        </select>
-
-                                        <label for="message">Message (20 chars min, 100 max) :</label>
-                                        <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup"
+                                        <label for="description">Description:</label>
+                                        <textarea id="description"  wire:model="productForm.description" class="form-control" name="description" data-parsley-trigger="keyup"
                                             data-parsley-minlength="20" data-parsley-maxlength="100"
-                                            data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                            data-parsley-minlength-description="Come on! You need to enter at least a 20 caracters long comment.."
                                             data-parsley-validation-threshold="10"></textarea>
 
                                         <br />
@@ -148,12 +135,12 @@
                         <div class="col-md-4 col-sm-12 profile_details">
 
 
-
+                            <div class="col-12 p-0">
+                                <label for="heard ">Product Image *:</label>
+                            </div>
 
                             <div class="well profile_view">
-                                <div class="col-12">
-                                    <label for="heard">Product Image *:</label>
-                                </div>
+
 
 
                                 <div class="row">
@@ -162,9 +149,9 @@
 
 
                                         <div class="m-1">
-                                            <input type="file" class="form-control" wire:model="productForm.photo">
+                                            <input type="file" class="form-control" wire:model="productForm.image">
 
-                                            @error('photo')
+                                            @error('image')
                                                 <span class="error">{{ $message }}</span>
                                             @enderror
                                         </div>

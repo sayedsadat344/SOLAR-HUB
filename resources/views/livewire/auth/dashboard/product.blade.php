@@ -21,6 +21,7 @@
 
 
 
+
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -44,20 +45,20 @@
 
 
 
-                            @dump($products)
-                            {{-- @dump($list[1]) --}}
 
-                            @if (count((array) $products) > 0)
-                                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                            @if (count($products) > 0)
+                                <table id="datatable" class="table table-striped text-center" style="width:100% text-align:center;">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Image</th>
                                             <th>Product Name</th>
                                             <th>Supplier</th>
                                             <th>Category</th>
                                             <th>Quantity</th>
                                             <th>Unit Price</th>
                                             <th>Discription</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
 
@@ -68,13 +69,22 @@
                                         @foreach ($products as $product)
 
                                         <tr>
-                                            <td>{{ $loop->index }}</td>
-                                            <td>{{ $product->name}}</td>
-                                            <td>{{ $product->supplier->name}}</td>
-                                            <td>{{$product->category->name}}</td>
-                                            <td>{{$product->stock_quantity}}</td>
-                                            <td>{{$product->price}}</td>
-                                            <td>{{$product->description}}</td>
+                                            <td class="text-center">{{ $loop->index + 1 }}</td>
+                                            <td class="text-center"> <img src="{{asset('auth/assets/images/user.png')}}" class="img img-circle img-thumbnail" alt="Avatar" width="50px" height="50px"></td>
+
+                                            <td class="text-center">{{ $product->name}}</td>
+                                            <td class="text-center">{{ $product->supplier->name}}</td>
+                                            <td class="text-center">{{$product->category->name}}</td>
+                                            <td class="text-center">{{$product->stock_quantity}}</td>
+                                            <td class="text-center">{{$product->price}}</td>
+                                            <td class="text-center">{{$product->description}}</td>
+                                            <td class="text-center">
+                                                {{-- <button type="button" class="btn btn-round btn-primary btn-sm mx-1" title="Edit Category" wire:click="$dispatch('product-edit', {id:{{$product->id}} })"
+                                                  data-toggle="modal"
+                                                  data-target="#addEditCategory"><i class="fa fa-edit"></i> </button> --}}
+                                                <button type="button" class="btn btn-round btn-danger btn-sm mx-1" title="Delete Category" wire:click="deleteProduct({{$product->id}}})"><i class="fa fa-trash"></i> </button>
+                                                {{-- <button wire:click="$dispatch('confirmDelete',{{ $cat->id }},'category-deleted')">...</button> --}}
+                                              </td>
 
                                         </tr>
 

@@ -2,38 +2,51 @@
 
 namespace App\Livewire\Auth\Dashboard;
 
-use App\Livewire\Forms\ProductForm;
-use Illuminate\Support\Facades\Route;
-use Livewire\Attributes\Layout;
+use App\Models\Product as ModelsProduct;
+
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Product extends Component
 {
 
 
-
-    public $products = [];
-
+    use WithPagination;
 
 
-    // #[Layout('layouts.auth')]
+
     public function render()
     {
-        $this->products = $this->getAllProducts();
-
-        // dd($this->products);
-        return view('livewire.auth.dashboard.product');
+        return view('livewire.auth.dashboard.product',[
+            'products' => ModelsProduct::paginate(5)
+        ]);
     }
 
 
-    public function getAllProducts(){
-        $query =  Product::all();
-        return  $query['products'];
+
+    public function deleteProduct($id)
+    {
+
+        try {
+            Product::find($id)->delete();
+
+            $this->dispatch('alert', [
+                'type' => 'success',
+                'message' => "Product added Successfully!!",
+            ]);
+
+        } catch (\Throwable $th) {
+
+            dd($th);
+
+            $this->dispatch('alert', [
+                'type' => 'error',
+                'message' => "Product not deleted!!",
+            ]);
+        }
+
     }
 
-    public function deleteProduct(){
-
-    }
 
 
 }

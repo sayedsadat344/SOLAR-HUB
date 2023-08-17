@@ -8,23 +8,26 @@ use Livewire\Form;
 class ProductForm extends Form
 {
 
+    // #[Rule('required|unique:products|min:5')]
 
     #[Rule('required|min:5')]
     public $name = '';
 
-    #[Rule('required|min:5')]
+    #[Rule('required|min:10')]
     public $description = '';
 
-    #[Rule('required|min:5')]
+    #[Rule('required|numeric|gt:0')]
     public $price = 0.0;
 
-    #[Rule('required|min:5')]
-    public $stock_quantity = null;
+    #[Rule('required|numeric|gt:0')]
+    public $stock_quantity = 0;
 
-    #[Rule('required|min:5')]
+    // #[Rule('required|exists:categories,id')]
+    #[Rule('required')]
     public $category_id = null;
 
-    #[Rule('required|min:5')]
+    // #[Rule('required|exists:suppliers,id')]
+    #[Rule('required')]
     public $supplier_id = null;
 
 
