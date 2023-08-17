@@ -28,4 +28,8 @@ class ProductForm extends Form
     public $supplier_id = null;
 
 
+    #[Rule('required|image|max:1024')]
+    public $image = null;
+
+
 }

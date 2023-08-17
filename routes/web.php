@@ -5,9 +5,10 @@ use App\Livewire\Auth\Dashboard\Category;
 use App\Livewire\Auth\Dashboard\Dashboard;
 use App\Livewire\Auth\Dashboard\Product;
 use App\Livewire\Auth\Dashboard\Products\AddProduct;
+use App\Livewire\Auth\Dashboard\Supplier as DashboardSupplier;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Counter;
-
+use App\Models\Supplier;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/products', Product::class)->name('products');
     Route::get('/products/add', AddProduct::class)->name('add-product');
     Route::get('/product/category', Category::class)->name('product-category');
+    Route::get('/product/supplier', DashboardSupplier::class)->name('product-category');
     Route::get('/sale/items', AddProduct::class)->name('sale-items');
 });
 

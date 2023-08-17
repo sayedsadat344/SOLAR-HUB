@@ -1422,7 +1422,7 @@ a:hover, a:focus {
 
 .site_title:hover, .site_title:focus {
   text-decoration: none; }
-  
+
 .site_title span:hover{
   background: #fff;
 }
@@ -4971,3 +4971,10 @@ ul.notifications {
 
 .calendar-exibit .calendar-table {
   padding: 0 0 4px 0; }
+
+
+
+
+
+/* /////////////////////////// */
+

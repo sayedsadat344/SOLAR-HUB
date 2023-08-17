@@ -15,6 +15,7 @@ class Product extends Component
     public $products = [];
 
 
+
     // #[Layout('layouts.auth')]
     public function render()
     {

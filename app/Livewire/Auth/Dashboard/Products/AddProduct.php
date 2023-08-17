@@ -6,11 +6,15 @@ namespace App\Livewire\Auth\Dashboard\Products;
 use App\Livewire\Forms\ProductForm;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddProduct extends Component
 {
 
+    use WithFileUploads;
+
     public ProductForm $productForm;
+
 
     public function render()
     {

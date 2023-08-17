@@ -31,6 +31,12 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('auth/assets/build/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('auth/assets/build/css/pagination.css') }}" rel="stylesheet">
+    {{-- <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css
+" rel="stylesheet"> --}}
+
+
 
 </head>
 
@@ -72,12 +78,13 @@
                                         <li><a href="index3.html">Dashboard3</a></li>
                                     </ul> --}}
                                 </li>
-                                <li><a><i class="fa fa-edit"></i> Product Management <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-edit"></i> Product Management <span
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/products" wire:navigate.hover>Product List</a></li>
                                         <li><a href="/product/category" wire:navigate>Product Categories</a></li>
                                         <li><a href="/sale/items" wire:navigate>Sale Items</a></li>
-                                        <li><a href="/suppliers" wire:navigate>Product Suppliers</a></li>
+                                        <li><a href="/product/supplier" wire:navigate>Product Suppliers</a></li>
 
                                     </ul>
                                 </li>
@@ -95,7 +102,8 @@
                                         <li><a href="calendar.html">Calendar</a></li> --}}
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-table"></i> Financial Management <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-table"></i> Financial Management <span
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/payments" wire:navigate>Payments</a></li>
                                         <li><a href="/debts" wire:navigate>Debts</a></li>
@@ -111,7 +119,8 @@
                                         <li><a href="other_charts.html">Other Charts</a></li> --}}
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-clone"></i>User Management <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-clone"></i>User Management <span
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/users" wire:navigate>Users</a></li>
                                         {{-- <li><a href="fixed_footer.html">Fixed Footer</a></li> --}}
@@ -317,9 +326,9 @@
             </div>
             <!-- /page content -->
 
-             <!-- dashboar dgraph -->
-             @livewire('auth.dashboard.footer')
-             <!-- /dashboar dgraph -->
+            <!-- dashboar dgraph -->
+            @livewire('auth.dashboard.footer')
+            <!-- /dashboar dgraph -->
         </div>
     </div>
 
@@ -368,6 +377,79 @@
     <script src="{{ asset('auth/assets/build/js/custom.min.js') }}"></script>
 
 
+    {{-- fire sweet alert toasters on event --}}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-right',
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        window.addEventListener('alert', (event) => {
+
+            const eventData = event.detail;
+            const type = eventData[0].type;
+            const message = eventData[0].message;
+
+            Toast.fire({
+                icon: type,
+                title: message
+            })
+        });
+
+
+
+        // window.addEventListener('confirmDelete', (event) => {
+
+
+        //     console.log("Event: ", event);
+
+
+        // });
+
+        // delete confirmation popup
+
+        window.addEventListener('confirmDelete', (event) => {
+
+
+           const eventData = event.detail;
+
+            // console.log("the target function is: ",target);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+
+
+
+                if (result.isConfirmed) {
+
+                    window.Livewire.dispatch(eventData.targetEvent, {id:eventData.id});
+                }
+            })
+
+
+        });
+    </script>
+
+
+
+
     <script type="text/javascript">
         window.addEventListener('closeModal', (event) => {
 
@@ -379,7 +461,7 @@
             modal.setAttribute('style', 'display: none');
             // get modal backdrops
             const modalsBackdrops = document.getElementsByClassName('modal-backdrop');
-            console.log("EVENT: ",modalsBackdrops);
+            console.log("EVENT: ", modalsBackdrops);
             document.body.removeChild(modalsBackdrops[0]);
 
             // remove every modal backdrop
@@ -389,6 +471,32 @@
 
         })
     </script>
+
+
+    {{-- <script>
+        window.addEventListener('swal:modal', event => {
+            swal({
+                title: event.detail.message,
+                text: event.detail.text,
+                icon: event.detail.type,
+            });
+        });
+
+        window.addEventListener('swal:confirm', event => {
+            swal({
+                    title: event.detail.message,
+                    text: event.detail.text,
+                    icon: event.detail.type,
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.livewire.emit('remove');
+                    }
+                });
+        });
+    </script> --}}
 
 
 </body>
